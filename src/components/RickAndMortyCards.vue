@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios'
 import { ref, watch } from 'vue'
+import Card from './Card.vue'
 
 const characters = ref(null)
 const page = ref(1)
@@ -10,14 +11,56 @@ characters.value = await axios.get('https://rickandmortyapi.com/api/character?pa
 watch(page, async () => {
     const res = await axios.get(`https://rickandmortyapi.com/api/character?page=${page.value}`)
     characters.value = res.data.results
+    
 })
 </script>
 
 <template>
-    <div>
-        <h1>Rick and Morty Cards</h1>
-        <button @click="page--">Previous</button>
-        <button @click="page++">Next</button>
-        <code>{{ characters }}</code>
+    <h1>Rick and Morty</h1>
+    <div class="container">
+        <div class="cards">
+            <Card
+                v-for="character in characters"
+                :key="character.id"
+                :image="character.image"
+                :name="character.name"
+            />
+        </div>
     </div>
 </template>
+
+<style scoped>
+h1 {
+    text-align: center;
+}
+.container {
+    background-color: rgb(27, 26, 26);
+    padding: 30px
+}
+.cards {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cards h3 {
+    font-weight: bold;
+}
+.cards p {
+    font-size: 10px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px
+}
+.button-container button {
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+</style>
