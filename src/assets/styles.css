@@ -20,9 +20,6 @@
     cursor: pointer;
 }
 
-
-/* Breaking Bad Styles */
-
 .container {
     background-color: rgb(27, 26, 26);
     padding: 30px
@@ -32,7 +29,7 @@
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    height: 700px
+    /* height: 700px */
 }
 .cards h3 {
     font-weight: bold;
@@ -62,8 +59,6 @@
     align-items: center;
     justify-content: center;
 }
-
-/* Rick and Morty */
 
 .container {
     background-color: rgb(27, 26, 26);
