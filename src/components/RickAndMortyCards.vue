@@ -6,11 +6,12 @@ import Card from './Card.vue'
 const characters = ref(null)
 const page = ref(1)
 
-characters.value = await axios.get('https://rickandmortyapi.com/api/character?page=1')
+const response = await axios.get('https://rickandmortyapi.com/api/character?page=1')
+characters.value = [...response.data.results]
 
 watch(page, async () => {
     const res = await axios.get(`https://rickandmortyapi.com/api/character?page=${page.value}`)
-    characters.value = res.data.results
+    characters.value = [...res.data.results]
     
 })
 </script>
@@ -26,6 +27,8 @@ watch(page, async () => {
                 :name="character.name"
             />
         </div>
+        <n-button @click="page = page - 1">Previous</n-button>
+        <n-button @click="page = page + 1">Next</n-button>
     </div>
 </template>
 
