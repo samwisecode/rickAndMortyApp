@@ -10,6 +10,7 @@ console.log(props)
         <template #cover>
             <img :src="props.image">
         </template>
+        <slot></slot>
     </n-card>
 </template>
 
@@ -17,8 +18,10 @@ console.log(props)
 .n-card {
     width: 200px;
     margin:10px 20px;
-    height: 400px;
+}
 
+.n-card-header {
+    padding-bottom: 0 !important;
 }
 
 p {
