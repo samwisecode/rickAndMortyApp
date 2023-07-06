@@ -22,7 +22,6 @@ watch(page, async () => {
 </script>
 
 <template>
-    <h1>Rick and Morty</h1>
     <div class="container">
         <div class="cards">
             <Card
@@ -39,8 +38,10 @@ watch(page, async () => {
                 </div>
             </Card>
         </div>
-        <n-button type="info" @click="page = page - 1" :disabled="page == 1">Previous</n-button>
-        <n-button type="info" @click="page = page + 1">Next</n-button>
+        <div class="pagination">
+            <n-button type="info" @click="page = page - 1" :disabled="page == 1">Previous</n-button>
+            <n-button type="info" @click="page = page + 1" :disabled="page == 64">Next</n-button>
+        </div>
     </div>
 </template>
 
@@ -77,5 +78,14 @@ h1 {
     border-radius: 100%;
     margin: 0 5px;
     cursor: pointer;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 30px;
+}
+.n-button {
+    margin: 0 5px;
 }
 </style>
